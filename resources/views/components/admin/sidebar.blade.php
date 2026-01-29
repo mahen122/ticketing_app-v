@@ -4,7 +4,7 @@
         <div class="w-full flex items-center justify-center p-4">
             <img src="{{ asset('assets/images/logo_bengkod.svg') }}" alt="Logo">
         </div>
-        
+
         <!-- Sidebar content here -->
         <ul class="menu w-full grow gap-1">
             <!-- Dashboard Item -->
@@ -28,7 +28,7 @@
                     <span class="is-drawer-close:hidden">Manajemen Kategori</span>
                 </a>
             </li>
-            
+
             <!-- Event item -->
             <li class="{{ request()->routeIs('admin.events.*') ? 'bg-gray-200 rounded-lg' : '' }}">
                 <a href="{{ route('admin.events.index') }}" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Event">
@@ -39,7 +39,7 @@
                     <span class="is-drawer-close:hidden">Manajemen Event</span>
                 </a>
             </li>
-            
+
             <!-- History item -->
             <li class="{{ request()->routeIs('admin.histories.*') ? 'bg-gray-200 rounded-lg' : '' }}">
                 <a href="{{ route('admin.histories.index') }}" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="History">
@@ -48,6 +48,17 @@
                         <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
                     <span class="is-drawer-close:hidden">History Pembelian</span>
+                </a>
+            </li>
+
+            <!-- Management Lokasi item -->
+            <li class="{{ request()->routeIs('admin.lokasi.*') ? 'bg-gray-200 rounded-lg' : '' }}">
+                <a href="{{ route('admin.lokasi.index') }}" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Lokasi">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm0-14a6 6 0 1 0 0 12 6 6 0 0 0 0-12z" />
+                        <circle cx="12" cy="13" r="2" fill="currentColor" />
+                    </svg>
+                    <span class="is-drawer-close:hidden">Management Lokasi</span>
                 </a>
             </li>
         </ul>

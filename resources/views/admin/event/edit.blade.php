@@ -8,8 +8,7 @@
         <div class="card-body">
             <h2 class="card-title text-2xl mb-6">Edit Event</h2>
 
-            <form id="eventForm" class="space-y-4" method="post"
-                action="{{ route('admin.events.update', $event->id) }}" enctype="multipart/form-data">
+            <form id="eventForm" class="space-y-4" method="post" action="{{ route('admin.events.update', $event->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <!-- Nama Event -->
@@ -17,8 +16,7 @@
                     <label class="label">
                         <span class="label-text font-semibold">Judul Event</span>
                     </label>
-                    <input type="text" name="judul" placeholder="Contoh: Konser Musik Rock"
-                        class="input input-bordered w-full" value="{{ $event->judul }}" required />
+                    <input type="text" name="judul" placeholder="Contoh: Konser Musik Rock" class="input input-bordered w-full" value="{{ $event->judul }}" required />
                 </div>
 
                 <!-- Deskripsi -->
@@ -27,8 +25,7 @@
                         <span class="label-text font-semibold">Deskripsi</span>
                     </label>
                     <br>
-                    <textarea name="deskripsi" placeholder="Deskripsi lengkap tentang event..."
-                        class="textarea textarea-bordered h-24 w-full" required>{{ $event->deskripsi }}</textarea>
+                    <textarea name="deskripsi" placeholder="Deskripsi lengkap tentang event..." class="textarea textarea-bordered h-24 w-full" required>{{ $event->deskripsi }}</textarea>
                 </div>
 
                 <!-- Tanggal & Waktu -->
@@ -36,8 +33,7 @@
                     <label class="label">
                         <span class="label-text font-semibold">Tanggal & Waktu</span>
                     </label>
-                    <input type="datetime-local" name="tanggal_waktu" class="input input-bordered w-full"
-                        value="{{ $event->tanggal_waktu->format('Y-m-d\TH:i') }}" required />
+                    <input type="datetime-local" name="tanggal_waktu" class="input input-bordered w-full" value="{{ $event->tanggal_waktu->format('Y-m-d\TH:i') }}" required />
                 </div>
 
                 <!-- Lokasi -->
@@ -45,8 +41,12 @@
                     <label class="label">
                         <span class="label-text font-semibold">Lokasi</span>
                     </label>
-                    <input type="text" name="lokasi" placeholder="Contoh: Stadion Utama"
-                        class="input input-bordered w-full" value="{{ $event->lokasi }}" required />
+                    <select name="lokasi_id" class="select select-bordered w-full" required>
+                        <option value="" disabled>Pilih Lokasi</option>
+                        @foreach ($lokasi as $l)
+                        <option value="{{ $l->id }}" {{ $l->id == $event->lokasi_id ? 'selected' : '' }}>{{ $l->nama_lokasi }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <!-- Kategori -->
@@ -57,10 +57,9 @@
                     <select name="kategori_id" class="select select-bordered w-full" required>
                         <option value="" disabled selected>Pilih Kategori</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}"
-                                {{ $category->id == $event->kategori_id ? 'selected' : '' }}>
-                                {{ $category->nama }}
-                            </option>
+                        <option value="{{ $category->id }}" {{ $category->id == $event->kategori_id ? 'selected' : '' }}>
+                            {{ $category->nama }}
+                        </option>
                         @endforeach
 
                     </select>
@@ -71,8 +70,7 @@
                     <label class="label">
                         <span class="label-text font-semibold">Gambar Event</span>
                     </label>
-                    <input type="file" name="gambar" accept="image/*"
-                        class="file-input file-input-bordered w-full" />
+                    <input type="file" name="gambar" accept="image/*" class="file-input file-input-bordered w-full" />
                     <label class="label">
                         <span class="label-text-alt">Format: JPG, PNG, max 5MB</span>
                     </label>
@@ -87,9 +85,9 @@
                     <div class="avatar max-w-sm">
                         <div class="w-full rounded-lg">
                             @if ($event->gambar)
-                                <img id="previewImg" src="{{ asset('images/events/' . $event->gambar) }}" alt="Preview">
+                            <img id="previewImg" src="{{ asset('images/events/' . $event->gambar) }}" alt="Preview">
                             @else
-                                <img id="previewImg" src="" alt="Preview">
+                            <img id="previewImg" src="" alt="Preview">
                             @endif
                         </div>
                     </div>
@@ -104,15 +102,7 @@
         </div>
     </div>
 
-    <!-- Alert Success -->
-    <div id="successAlert" class="alert alert-success mt-4 hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span>Event berhasil disimpan!</span>
-    </div>
+    <!-- Alert Success manual dihapus agar tidak dobel notifikasi -->
 </div>
 
 <script>

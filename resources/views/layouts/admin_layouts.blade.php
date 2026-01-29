@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body class="bg-gray-50">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
@@ -23,8 +25,7 @@
                 <ul class="space-y-2">
 
                     <li>
-                        <a href="{{ route('admin.dashboard') }}"
-                           class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-blue-50 text-blue-600' : '' }}">
+                        <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-blue-50 text-blue-600' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-5 h-5 mr-3">
                                 <path fill="currentColor" d="M6 19h3v-5q0-.425.288-.712T10 13h4q.425 0 .713.288T15 14v5h3v-9l-6-4.5L6 10zm-2 0v-9q0-.475.213-.9t.587-.7l6-4.5q.525-.4 1.2-.4t1.2.4l6 4.5q.375.275.588.7T20 10v9q0 .825-.588 1.413T18 21h-4q-.425 0-.712-.288T13 20v-5h-2v5q0 .425-.288.713T10 21H6q-.825 0-1.412-.587T4 19m8-6.75" />
                             </svg>
@@ -33,8 +34,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('admin.categories.index') }}"
-                           class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.categories.*') ? 'bg-blue-50 text-blue-600' : '' }}">
+                        <a href="{{ route('admin.categories.index') }}" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.categories.*') ? 'bg-blue-50 text-blue-600' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-5 h-5 mr-3">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 3a3 3 0 1 0 6 0a3 3 0 1 0-6 0" />
                             </svg>
@@ -43,8 +43,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('admin.events.index') }}"
-                           class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.events.*') ? 'bg-blue-50 text-blue-600' : '' }}">
+                        <a href="{{ route('admin.events.index') }}" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.events.*') ? 'bg-blue-50 text-blue-600' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-5 h-5 mr-3">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7a2 2 0 0 1 2-2" />
                             </svg>
@@ -53,13 +52,22 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('admin.histories.index') }}"
-                           class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.histories.*') ? 'bg-blue-50 text-blue-600' : '' }}">
+                        <a href="{{ route('admin.histories.index') }}" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.histories.*') ? 'bg-blue-50 text-blue-600' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-5 h-5 mr-3">
                                 <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2" />
                                 <polyline points="12 6 12 12 16 14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                             History Pembelian
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('admin.lokasi.index') }}" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors {{ request()->routeIs('admin.lokasi.*') ? 'bg-blue-50 text-blue-600' : '' }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-5 h-5 mr-3">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm0-14a6 6 0 1 0 0 12 6 6 0 0 0 0-12z" />
+                                <circle cx="12" cy="13" r="2" fill="currentColor" />
+                            </svg>
+                            Management Lokasi
                         </a>
                     </li>
                 </ul>
@@ -115,19 +123,20 @@
 
     <!-- Success Toast Container -->
     @if(session('success'))
-        <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
-            {{ session('success') }}
-        </div>
-        <script>
-            setTimeout(() => {
-                const toast = document.getElementById('successToast');
-                if (toast) {
-                    toast.style.opacity = '0';
-                    toast.style.transition = 'opacity 0.3s';
-                    setTimeout(() => toast.remove(), 300);
-                }
-            }, 3000);
-        </script>
+    <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
+        {{ session('success') }}
+    </div>
+    <script>
+        setTimeout(() => {
+            const toast = document.getElementById('successToast');
+            if (toast) {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(() => toast.remove(), 300);
+            }
+        }, 3000);
+    </script>
     @endif
 </body>
+
 </html>

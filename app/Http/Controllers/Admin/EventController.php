@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Kategori;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::with(['kategori', 'lokasi'])->get();
         return view('admin.event.index', compact('events'));
     }
 
@@ -25,7 +26,8 @@ class EventController extends Controller
     public function create()
     {
         $categories = Kategori::all();
-        return view('admin.event.create', compact('categories'));
+        $lokasi = Lokasi::where('aktif', 'y')->get();
+        return view('admin.event.create', compact('categories', 'lokasi'));
     }
 
     /**
@@ -37,14 +39,14 @@ class EventController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tanggal_waktu' => 'required|date',
-            'lokasi' => 'required|string|max:255',
+            'lokasi_id' => 'required|exists:lokasi,id',
             'kategori_id' => 'required|exists:kategoris,id',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120', // 5MB
         ]);
 
         // Handle file upload
         if ($request->hasFile('gambar')) {
-            $imageName = time().'.'.$request->gambar->extension();
+            $imageName = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('images/events'), $imageName);
             $validatedData['gambar'] = $imageName;
         }
@@ -75,7 +77,8 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
         $categories = Kategori::all();
-        return view('admin.event.edit', compact('event', 'categories'));
+        $lokasi = Lokasi::where('aktif', 'y')->get();
+        return view('admin.event.edit', compact('event', 'categories', 'lokasi'));
     }
 
     /**
@@ -90,14 +93,14 @@ class EventController extends Controller
                 'judul' => 'required|string|max:255',
                 'deskripsi' => 'required|string',
                 'tanggal_waktu' => 'required|date',
-                'lokasi' => 'required|string|max:255',
+                'lokasi_id' => 'required|exists:lokasi,id',
                 'kategori_id' => 'required|exists:kategoris,id',
                 'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120', // 5MB
             ]);
 
             // Handle file upload
             if ($request->hasFile('gambar')) {
-                $imageName = time().'.'.$request->gambar->extension();
+                $imageName = time() . '.' . $request->gambar->extension();
                 $request->gambar->move(public_path('images/events'), $imageName);
                 $validatedData['gambar'] = $imageName;
             }

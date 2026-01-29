@@ -4,17 +4,17 @@
 
 @section('content')
 @if (session('success'))
-    <div class="toast toast-bottom toast-center">
-        <div class="alert alert-success">
-            <span>{{ session('success') }}</span>
-        </div>
+<div class="toast toast-bottom toast-center">
+    <div class="alert alert-success">
+        <span>{{ session('success') }}</span>
     </div>
+</div>
 
-    <script>
+<script>
     setTimeout(() => {
         document.querySelector('.toast')?.remove()
     }, 3000)
-    </script>
+</script>
 @endif
 
 <div class="container mx-auto p-10">
@@ -41,7 +41,7 @@
                     <td>{{ $event->judul }}</td>
                     <td>{{ $event->kategori->nama }}</td>
                     <td>{{ $event->tanggal_waktu->format('d M Y') }}</td>
-                    <td>{{ $event->lokasi }}</td>
+                    <td>{{ $event->lokasi ? $event->lokasi->nama_lokasi : '-' }}</td>
                     <td>
                         <a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-sm btn-info mr-2">Detail</a>
                         <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-sm btn-primary mr-2">Edit</a>
